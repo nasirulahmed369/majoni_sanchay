@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "283748597450",
+    "project_id": "majoni-sanchay",
+    "storage_bucket": "majoni-sanchay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283748597450:android:212f3c3721ac2f2bc4fe33",
+        "android_client_info": {
+          "package_name": "com.majoni.majoni_sanchay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283748597450-kpmj99jj1a7mtt9g9dbhetc7mub5e48k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb-tPfesaSM2eoqSjcIWV5JQcb-xBFH_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283748597450-kpmj99jj1a7mtt9g9dbhetc7mub5e48k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
