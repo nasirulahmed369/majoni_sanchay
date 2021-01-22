@@ -4,7 +4,6 @@ import 'package:majoni_sanchay/screens/home.dart';
 import 'package:majoni_sanchay/screens/admin_panel.dart';
 import 'package:majoni_sanchay/screens/login.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:majoni_sanchay/screens/user_info.dart';
 import 'package:majoni_sanchay/services/auth_service.dart';
 import 'package:provider/provider.dart';
 

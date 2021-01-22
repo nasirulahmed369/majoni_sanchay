@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:majoni_sanchay/models/customer.dart';
-import 'package:majoni_sanchay/screens/user_list.dart';
 
 class DatabaseService {
   final CollectionReference db = FirebaseFirestore.instance.collection('users');
