@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
+import 'package:flutter/services.dart';
 import 'package:majoni_sanchay/screens/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class CustomerDetails extends StatefulWidget {
   final DocumentSnapshot id;
@@ -11,44 +13,50 @@ class CustomerDetails extends StatefulWidget {
 }
 
 class _CustomerDetailsState extends State<CustomerDetails> {
-  final TextEditingController inputControl = TextEditingController();
+  //final TextEditingController inputControl = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
+  String amount = '';
   Map<String, dynamic> get doc {
     return widget.id.data();
   }
-
-  final CollectionReference user =
-      FirebaseFirestore.instance.collection('users');
+  //User user = FirebaseAuth.instance.currentUser;
 
   formatDate() {
-    Timestamp timestamp = doc['date'];
+    Timestamp timestamp = doc['startDate'];
     return DateTime.parse(timestamp.toDate().toString());
   }
 
-  Future<void> updateMoney() async {
-    try {
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(widget.id.id)
-          .update({
-            'totalAmount': doc['totalAmount'] + int.parse(inputControl.text)
-          })
-          .then((value) => print('something'))
-          .catchError((error) => print("Failed to update user: $error"));
+  // Future<void> updateMoney() async {
+  //   try {
+  //     FirebaseFirestore.instance
+  //         .collection("users")
+  //         .doc()
+  //         .collection('customers')
+  //         .doc(widget.id.)
+  //         .update({
+  //           'totalAmount': doc['totalAmount'] + int.parse(inputControl.text)
+  //         })
+  //         .then((value) => print('something'))
+  //         .catchError((error) => print("Failed to update user: $error"));
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return Home(
-          title: 'Home',
-        );
-      }));
-    } catch (e) {
-      print('error' + e);
-    }
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //       return Home(
+  //         title: 'Home',
+  //       );
+  //     }));
+  //   } catch (e) {
+  //     print('error' + e);
+  //   }
+  // }
+
+  String validAmount(value) {
+    final isDigitsOnly = int.tryParse(value);
+    return isDigitsOnly == null ? 'Input needs to be digits only' : null;
   }
 
   @override
   Widget build(BuildContext context) {
+    final firbaseUser = Provider.of<User>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.amber[100],
@@ -81,8 +89,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                       width: MediaQuery.of(context).size.width,
                       height: 50,
                       child: Center(
-                        child: Text(
-                            'Account Number: ${doc['account']} ${doc['isActive'] ? 'Active' : 'Inactive'}'),
+                        child: Text('Account Number: ${doc['account']}'),
                       ),
                     ),
                   ),
@@ -96,7 +103,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                       width: MediaQuery.of(context).size.width,
                       height: 50,
                       child: Center(
-                        child: Text('Sanchay Type: ${doc['payType']}'),
+                        child: Text('Sanchay Type: ${doc['sanchayType']}'),
                       ),
                     ),
                   ),
@@ -126,16 +133,22 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                       child: Form(
                         key: _formkey,
                         child: TextFormField(
-                          controller: inputControl,
+                          //controller: inputControl,
+                          onChanged: (val) => this.setState(() {
+                            amount = val;
+                          }),
+                          keyboardType:
+                              TextInputType.numberWithOptions(decimal: true),
 
-                          keyboardType: TextInputType.number,
-                          //textAlign: TextAlign.center,
-                          //initialValue: 'Password',
                           decoration: InputDecoration(
                             labelText: 'amount',
                             border: OutlineInputBorder(),
                           ),
-                          validator: RequiredValidator(errorText: 'required*'),
+                          validator: validAmount,
+
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                          ],
                         ),
                       ),
                     ),
@@ -151,9 +164,37 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                       height: 50,
                       child: Center(
                         child: FlatButton(
-                          minWidth: MediaQuery.of(context).size.width - 2,
+                          minWidth: MediaQuery.of(context).size.width - 10,
                           child: Text('Click here to Deposit'),
-                          onPressed: updateMoney,
+                          onPressed: () async {
+                            final formState = _formkey.currentState;
+                            if (formState.validate()) {
+                              formState.save();
+                              try {
+                                FirebaseFirestore.instance
+                                    .collection("agents")
+                                    .doc(firbaseUser.uid)
+                                    .collection('customers')
+                                    .doc(widget.id.id)
+                                    .update({
+                                      'totalAmount':
+                                          doc['totalAmount'] + int.parse(amount)
+                                    })
+                                    .then((value) => print('something'))
+                                    .catchError((error) =>
+                                        print("Failed to update user: $error"));
+
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return Home(
+                                    title: 'Home',
+                                  );
+                                }));
+                              } catch (e) {
+                                print('error' + e);
+                              }
+                            }
+                          },
                         ),
                       ),
                     ),

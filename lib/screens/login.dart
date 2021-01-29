@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
 import 'package:majoni_sanchay/services/auth_service.dart';
 import 'package:provider/provider.dart';
 

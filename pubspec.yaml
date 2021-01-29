@@ -33,6 +33,10 @@ dependencies:
   #form_field_validator: ^1.0.1
   firebase_auth: ^0.20.0+1
   cloud_firestore: ^0.16.0
+  keyboard_avoider: ^0.1.2
+  csv: ^4.1.0
+  path_provider: ^1.6.27
+  get: ^3.24.0
 
 dev_dependencies:
   flutter_test:

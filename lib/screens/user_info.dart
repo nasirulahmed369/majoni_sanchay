@@ -11,6 +11,7 @@ class UserData extends StatefulWidget {
 class _UserDataState extends State<UserData> {
   Query users = FirebaseFirestore.instance.collection('users');
   User user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

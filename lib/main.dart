@@ -38,12 +38,12 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firbaseUser = context.watch<User>();
+    String uid = 'Es2BgXunj4PDbgX56VIK4Z08lle2';
 
     if (firbaseUser != null) {
-      return firbaseUser.uid == 'PblGdd1mXzQGDUnJNszWq1aGpYp1'
-          ? AdminPanel()
-          : Home(title: 'dashboard');
-    }
-    return Login();
+      return firbaseUser.uid == uid ? AdminPanel() : Home(title: 'Dashboard');
+      //return AdminPanel();
+    } else
+      return Login();
   }
 }
