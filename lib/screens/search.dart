@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:majoni_sanchay/screens/customer_details.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -23,18 +24,26 @@ class _SearchState extends State<Search> {
       return ListView.builder(
         itemCount: snapshots.docs.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.blue,
-              radius: 25.0,
+          return GestureDetector(
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                radius: 25.0,
+              ),
+              title: Text(
+                '${snapshots.docs[index].data()['name']}',
+                style: TextStyle(),
+              ),
+              subtitle: Text(
+                  'Account Number: ${snapshots.docs[index].data()['account']}'),
+              onTap: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CustomerDetails(snapshots.docs[index])))
+              },
             ),
-            title: Text(
-              '${snapshots.docs[index].data()['name']}',
-              style: TextStyle(),
-            ),
-            subtitle: Text(
-                'Account Number: ${snapshots.docs[index].data()['account']}'),
-            onTap: () => {},
           );
         },
       );
@@ -90,7 +99,7 @@ class _SearchState extends State<Search> {
             ? searchData()
             : Container(
                 child: Center(
-                  child: Text('Enter account number to searh!'),
+                  child: Text('Enter account number to search'),
                 ),
               ));
   }

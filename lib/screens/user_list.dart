@@ -61,10 +61,11 @@ class _UserListState extends State<UserList> {
                   child: Card(
                     margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0),
                     child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.blue,
-                        radius: 25.0,
-                      ),
+                      leading: Icon(Icons.person),
+                      // CircleAvatar(
+                      //   backgroundColor: Colors.blue,
+                      //   radius: 25.0,
+                      // ),
                       title: Text('${doc.data()['name']}'),
                       subtitle: Text('Account No. ${doc.data()['account']}'),
                       onTap: () => {

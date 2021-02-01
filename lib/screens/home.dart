@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:majoni_sanchay/screens/search.dart';
-//import 'package:majoni_sanchay/screens/search_customer.dart';
-//import 'package:majoni_sanchay/screens/search_customer.dart';
 
 class Home extends StatefulWidget {
   final String title;
@@ -50,88 +48,95 @@ class _HomeState extends State<Home> {
           body: Container(
             child: Padding(
               padding: const EdgeInsets.all(25.0),
-              child: Column(children: [
-                SizedBox(
-                  child: RaisedButton(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => Search()
-                              //SearchCustomer()
-                              //UserList(query)
-                              ));
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            height: 55,
-                            width: 55,
-                            color: Colors.transparent,
-                            child: Icon(
-                              Icons.search,
-                              size: 30,
-                              color: Colors.black,
-                            ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      child: RaisedButton(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
+                        ),
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Search()
+                                  //SearchCustomer()
+                                  //UserList(query)
+                                  ));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Container(
+                                height: 55,
+                                width: 55,
+                                color: Colors.transparent,
+                                child: Icon(
+                                  Icons.search,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'Sanchay'.toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            'Sanchay'.toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SizedBox(
-                  child: RaisedButton(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                      //side: BorderSide(color: Colors.red),
+                    SizedBox(
+                      height: 15,
                     ),
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            height: 55,
-                            width: 55,
-                            color: Colors.transparent,
-                            child: Icon(
-                              Icons.settings,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Settings'.toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
+                    // SizedBox(
+                    //   child: RaisedButton(
+                    //     elevation: 10,
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.zero,
+                    //       //side: BorderSide(color: Colors.red),
+                    //     ),
+                    //     color: Colors.white,
+                    //     onPressed: () {
+                    //       Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) => AgentDetails()));
+                    //     },
+                    //     child: Padding(
+                    //       padding: EdgeInsets.all(10),
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //         children: <Widget>[
+                    //           Container(
+                    //             height: 55,
+                    //             width: 55,
+                    //             color: Colors.transparent,
+                    //             child: Icon(
+                    //               Icons.settings,
+                    //               size: 30,
+                    //               color: Colors.black,
+                    //             ),
+                    //           ),
+                    //           Text(
+                    //             'Settings'.toUpperCase(),
+                    //             style: TextStyle(
+                    //               fontSize: 20,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  ]),
             ),
           ),
         ),

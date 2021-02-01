@@ -26,29 +26,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     return DateTime.parse(timestamp.toDate().toString());
   }
 
-  // Future<void> updateMoney() async {
-  //   try {
-  //     FirebaseFirestore.instance
-  //         .collection("users")
-  //         .doc()
-  //         .collection('customers')
-  //         .doc(widget.id.)
-  //         .update({
-  //           'totalAmount': doc['totalAmount'] + int.parse(inputControl.text)
-  //         })
-  //         .then((value) => print('something'))
-  //         .catchError((error) => print("Failed to update user: $error"));
-
-  //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //       return Home(
-  //         title: 'Home',
-  //       );
-  //     }));
-  //   } catch (e) {
-  //     print('error' + e);
-  //   }
-  // }
-
   String validAmount(value) {
     final isDigitsOnly = int.tryParse(value);
     return isDigitsOnly == null ? 'Input needs to be digits only' : null;
@@ -56,11 +33,13 @@ class _CustomerDetailsState extends State<CustomerDetails> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.id);
     final firbaseUser = Provider.of<User>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.amber[100],
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text('Customer Details'),
         ),
         body: Center(
@@ -208,3 +187,26 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     );
   }
 }
+
+// Future<void> updateMoney() async {
+//   try {
+//     FirebaseFirestore.instance
+//         .collection("users")
+//         .doc()
+//         .collection('customers')
+//         .doc(widget.id.)
+//         .update({
+//           'totalAmount': doc['totalAmount'] + int.parse(inputControl.text)
+//         })
+//         .then((value) => print('something'))
+//         .catchError((error) => print("Failed to update user: $error"));
+
+//     Navigator.push(context, MaterialPageRoute(builder: (context) {
+//       return Home(
+//         title: 'Home',
+//       );
+//     }));
+//   } catch (e) {
+//     print('error' + e);
+//   }
+// }

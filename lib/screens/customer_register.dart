@@ -6,11 +6,11 @@ import 'package:majoni_sanchay/screens/admin_panel.dart';
 class CustomerRegister extends StatelessWidget {
   //final _formKey = new GlobalKey<FormState>();
 
-  String agent1 = 'Iwd5PEpumvdwJyx89HGLsrOVrGg2';
-  String agent2 = 'Iwd5PEpumvdwJyx89HGLsrOVrGg2';
-  String agent3 = 'Iwd5PEpumvdwJyx89HGLsrOVrGg2';
-  String agent4 = 'Iwd5PEpumvdwJyx89HGLsrOVrGg2';
-  String agent5 = 'Iwd5PEpumvdwJyx89HGLsrOVrGg2';
+  String agent1 = 'RLy8OMdxH3NHuBIbkP1s41nZX3I2';
+  String agent2 = 'Qshwbh8fZPMgVdANlIKvBBT5wl83';
+  String agent3 = '5Qdwqw8l2LRent6pqA7zIMLh3fI2';
+  String agent4 = 'i3zReXU5BxWDuMq9QChvop6vpkM2';
+  String agent5 = 'rtHJX7qmGfU6Y6U4MgTJEkh7riQ2';
 
   String _sanchayType = 'Daily';
   String _agent;
@@ -43,7 +43,9 @@ class CustomerRegister extends StatelessWidget {
             'tenure': _tenure.text.trim() + month,
             'sanchayType': _sanchayType,
             'agent': _agent,
-            'startDate': DateTime.now()
+            'startDate': DateTime.now(),
+            'totalMoney': 0,
+            'endDate': null,
           })
           .then((value) => {
                     Navigator.pop(
@@ -64,7 +66,9 @@ class CustomerRegister extends StatelessWidget {
               //   ),
               // ),
               )
-          .catchError((error) => print("Failed to add user: $error"));
+          .catchError((error) {
+            print("Failed to add user: $error");
+          });
     }
 
     return KeyboardAvoider(

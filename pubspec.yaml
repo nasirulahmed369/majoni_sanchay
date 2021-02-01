@@ -1,5 +1,5 @@
 name: majoni_sanchay
-description: A new Flutter project.
+description: Money Collection app
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -34,8 +34,6 @@ dependencies:
   firebase_auth: ^0.20.0+1
   cloud_firestore: ^0.16.0
   keyboard_avoider: ^0.1.2
-  csv: ^4.1.0
-  path_provider: ^1.6.27
   get: ^3.24.0
 
 dev_dependencies:
