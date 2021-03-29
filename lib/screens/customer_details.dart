@@ -187,26 +187,3 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     );
   }
 }
-
-// Future<void> updateMoney() async {
-//   try {
-//     FirebaseFirestore.instance
-//         .collection("users")
-//         .doc()
-//         .collection('customers')
-//         .doc(widget.id.)
-//         .update({
-//           'totalAmount': doc['totalAmount'] + int.parse(inputControl.text)
-//         })
-//         .then((value) => print('something'))
-//         .catchError((error) => print("Failed to update user: $error"));
-
-//     Navigator.push(context, MaterialPageRoute(builder: (context) {
-//       return Home(
-//         title: 'Home',
-//       );
-//     }));
-//   } catch (e) {
-//     print('error' + e);
-//   }
-// }

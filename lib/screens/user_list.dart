@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 class UserList extends StatefulWidget {
-  int query;
+  final int query;
   UserList(this.query);
   @override
   _UserListState createState() => _UserListState();

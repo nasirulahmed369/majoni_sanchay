@@ -17,9 +17,6 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    // final User user = FirebaseAuth.instance.currentUser;
-    // final uid = user.uid;
-    // Custom  Widget
     Widget searchData() {
       return ListView.builder(
         itemCount: snapshots.docs.length,
